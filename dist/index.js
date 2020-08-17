@@ -18,7 +18,8 @@ server.app.use(body_parser_1.default.json());
 server.app.use(express_fileupload_1.default());
 //allow cross config
 //server.app.use( cors({ origin: true, credentials: true }) );
-server.app.use('*', cors_1.default());
+server.app.use(cors_1.default());
+server.app.options('*', cors_1.default());
 server.app.use(function (req, res, next) {
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', '*');
