@@ -11,7 +11,7 @@ const autenticacion_1 = require("../middlewares/autenticacion");
 const cors_1 = __importDefault(require("cors"));
 const userRoutes = express_1.Router();
 //Login
-var corsOptions = { origin: true,
+var corsOptions = { origin: false,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: ['Content-Type', 'Authorization', 'X-API-KEY', 'Origin', 'X-Requested-With', 'Accept', 'Access-Control-Allow-Request-Method', 'x-token'],
     preflightContinue: true,
