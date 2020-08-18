@@ -24,6 +24,7 @@ var corsOptions = { origin: true,
     preflightContinue: true,
     optionsSuccessStatus: 204 };
 server.app.options('*', cors_1.default(corsOptions));
+server.app.use(cors_1.default(corsOptions));
 //rutas de mi aplicacion
 server.app.use('/user', Usuario_1.default);
 server.app.use('/posts', Post_1.default);
