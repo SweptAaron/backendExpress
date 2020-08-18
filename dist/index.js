@@ -18,7 +18,24 @@ server.app.use(body_parser_1.default.json());
 server.app.use(express_fileupload_1.default());
 //allow cross config
 //server.app.use( cors({ origin: true, credentials: true }) );
-server.app.use(cors_1.default());
+var whitelist = ['http://localhost:8100'];
+var corsOptionsDelegate = function (req, callback) {
+    var corsOptions;
+    if (whitelist.indexOf(req.header('Origin')) !== -1) {
+        corsOptions = { origin: "*",
+            methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+            preflightContinue: false,
+            optionsSuccessStatus: 204 }; // reflect (enable) the requested origin in the CORS response
+    }
+    else {
+        corsOptions = { origin: "*",
+            methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+            preflightContinue: false,
+            optionsSuccessStatus: 204 };
+    } // disable CORS for this request
+    callback(null, corsOptions); // callback expects two parameters: error and options
+};
+server.app.use(cors_1.default(corsOptionsDelegate));
 server.app.options('*', cors_1.default());
 server.app.use(function (req, res, next) {
     // Website you wish to allow to connect
@@ -29,6 +46,7 @@ server.app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+console.log();
 //rutas de mi aplicacion
 server.app.use('/user', Usuario_1.default);
 server.app.use('/posts', Post_1.default);
