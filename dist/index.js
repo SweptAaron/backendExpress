@@ -29,13 +29,13 @@ server.app.use(express_fileupload_1.default());
 //rutas de mi aplicacion
 //server.app.use( '/user', userRoutes )
 //Login
-var corsOptions = { origin: true,
+var corsOptions = { origin: 'http://localhost:8100',
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: ['Content-Type', 'Authorization', 'X-API-KEY', 'Origin', 'X-Requested-With', 'Accept', 'Access-Control-Allow-Request-Method', 'x-token'],
     preflightContinue: false,
     optionsSuccessStatus: 204 };
-server.app.options('/login', cors_1.default());
-server.app.post('/login', cors_1.default(), (req, resp) => {
+server.app.options('/login', cors_1.default(corsOptions));
+server.app.post('/login', cors_1.default(corsOptions), (req, resp) => {
     const body = req.body;
     usuario_model_1.Usuario.findOne({ email: body.email }, (err, userDB) => {
         if (err) {
