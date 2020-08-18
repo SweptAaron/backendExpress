@@ -8,7 +8,6 @@ const usuario_model_1 = require("../models/usuario.model");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const token_1 = __importDefault(require("../clases/token"));
 const autenticacion_1 = require("../middlewares/autenticacion");
-const cors_1 = __importDefault(require("cors"));
 const userRoutes = express_1.Router();
 //Login
 var corsOptions = { origin: true,
@@ -16,7 +15,7 @@ var corsOptions = { origin: true,
     allowedHeaders: ['Content-Type', 'Authorization', 'X-API-KEY', 'Origin', 'X-Requested-With', 'Accept', 'Access-Control-Allow-Request-Method', 'x-token'],
     preflightContinue: false,
     optionsSuccessStatus: 204 };
-userRoutes.post('/login', cors_1.default(corsOptions), (req, resp) => {
+userRoutes.post('/login', (req, resp) => {
     const body = req.body;
     usuario_model_1.Usuario.findOne({ email: body.email }, (err, userDB) => {
         if (err) {

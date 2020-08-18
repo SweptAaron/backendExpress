@@ -8,6 +8,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const Usuario_1 = __importDefault(require("./Rutas/Usuario"));
+const Post_1 = __importDefault(require("./Rutas/Post"));
 const server = new server_1.default();
 //BodyParser
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
@@ -32,6 +33,7 @@ server.app.use(function (req, res, next) {
 });
 //rutas de mi aplicacion
 server.app.use('/user', Usuario_1.default);
+server.app.use('/posts', Post_1.default);
 //Login
 //conectar BD
 mongoose_1.default.connect('mongodb+srv://SweptAaron:CyD160412@cluster0-ok4he.mongodb.net/fotosgram?retryWrites=true&w=majority', { useNewUrlParser: true,
