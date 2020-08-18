@@ -18,12 +18,12 @@ server.app.use(body_parser_1.default.json());
 server.app.use(express_fileupload_1.default());
 //allow cross config
 //server.app.use( cors({ origin: true, credentials: true }) );
-var corsOptions = { origin: "*",
+var corsOptions = { origin: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: ['Content-Type', 'Authorization', 'X-API-KEY', 'Origin', 'X-Requested-With', 'Accept', 'Access-Control-Allow-Request-Method', 'x-token'],
     preflightContinue: true,
     optionsSuccessStatus: 204 };
-server.app.use(cors_1.default(corsOptions));
+server.app.options('*', cors_1.default(corsOptions));
 //rutas de mi aplicacion
 server.app.use('/user', Usuario_1.default);
 server.app.use('/posts', Post_1.default);
