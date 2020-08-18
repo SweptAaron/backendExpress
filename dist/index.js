@@ -34,7 +34,7 @@ var corsOptions = { origin: true,
     allowedHeaders: ['Content-Type', 'Authorization', 'X-API-KEY', 'Origin', 'X-Requested-With', 'Accept', 'Access-Control-Allow-Request-Method', 'x-token'],
     preflightContinue: false,
     optionsSuccessStatus: 204 };
-server.app.options('/login', cors_1.default(corsOptions));
+server.app.options('/login', cors_1.default());
 server.app.post('/login', cors_1.default(), (req, resp) => {
     const body = req.body;
     usuario_model_1.Usuario.findOne({ email: body.email }, (err, userDB) => {
