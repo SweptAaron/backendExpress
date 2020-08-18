@@ -17,39 +17,15 @@ server.app.use(body_parser_1.default.json());
 //FileUpload
 server.app.use(express_fileupload_1.default());
 //allow cross config
-//server.app.use( cors({ origin: true, credentials: true }) );
-var corsOptions = { origin: "*",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: true,
-    optionsSuccessStatus: 204 };
-var whitelist = ['http://localhost:8100'];
-var corsOptionsDelegate = function (req, callback) {
-    var corsOptions;
-    if (whitelist.indexOf(req.header('Origin')) !== -1) {
-        corsOptions = { origin: "*",
-            methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-            preflightContinue: true,
-            optionsSuccessStatus: 204 }; // reflect (enable) the requested origin in the CORS response
-    }
-    else {
-        corsOptions = { origin: "*",
-            methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-            preflightContinue: true,
-            optionsSuccessStatus: 204 };
-    } // disable CORS for this request
-    callback(null, corsOptions); // callback expects two parameters: error and options
-};
-server.app.use(cors_1.default(corsOptions));
-//server.app.options('*', cors(corsOptionsDelegate));
-// server.app.use(function (req, res, next) {
-//      // Website you wish to allow to connect
-//      res.setHeader('Access-Control-Allow-Origin', '*');
-//      // Request methods you wish to allow
-//      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//      // Request headers you wish to allow
-//      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//      next();
-//  });
+server.app.use(cors_1.default({ origin: true, credentials: true }));
+server.app.use(cors_1.default());
+server.app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-COntrol-Allow-Request-Method, x-token');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
 //rutas de mi aplicacion
 server.app.use('/user', Usuario_1.default);
 server.app.use('/posts', Post_1.default);
