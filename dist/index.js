@@ -36,16 +36,16 @@ var corsOptionsDelegate = function (req, callback) {
     callback(null, corsOptions); // callback expects two parameters: error and options
 };
 server.app.use(cors_1.default(corsOptionsDelegate));
-server.app.options('*', cors_1.default());
-// server.app.use(function (req, res, next) {
-//     // Website you wish to allow to connect
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     // Request methods you wish to allow
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//     // Request headers you wish to allow
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
+server.app.options('*', cors_1.default(corsOptionsDelegate));
+server.app.use(function (req, res, next) {
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    // Request headers you wish to allow
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 console.log();
 //rutas de mi aplicacion
 server.app.use('/user', Usuario_1.default);
