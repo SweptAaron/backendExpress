@@ -23,6 +23,19 @@ server.app.use( fileUpload() );
 //allow cross config
 server.app.use( cors({ origin: true, credentials: true }) );
 
+server.app.use(function (req, res, next) {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'x-token, content-type');
+    next();
+    });
+
 //rutas de mi aplicacion
 server.app.use( '/user', userRoutes )
 server.app.use( '/posts', postRoutes )
