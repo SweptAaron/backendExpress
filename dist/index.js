@@ -35,7 +35,7 @@ var corsOptions = { origin: true,
     preflightContinue: false,
     optionsSuccessStatus: 204 };
 server.app.options('/login', cors_1.default(corsOptions));
-server.app.post('/login', cors_1.default(corsOptions), (req, resp) => {
+server.app.post('/login', cors_1.default(), (req, resp) => {
     const body = req.body;
     usuario_model_1.Usuario.findOne({ email: body.email }, (err, userDB) => {
         if (err) {
