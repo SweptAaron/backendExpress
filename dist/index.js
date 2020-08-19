@@ -31,7 +31,7 @@ server.app.use('/user', Usuario_1.default);
 server.app.use('/posts', Post_1.default);
 //Login
 //conectar BD
-mongoose_1.default.connect('mongodb+srv://SweptAaron:CyD160412@cluster0-ok4he.mongodb.net/fotosgram?retryWrites=true&w=majority', { useNewUrlParser: true,
+mongoose_1.default.connect('URL de Servidor Mongo', { useNewUrlParser: true,
     useCreateIndex: true,
 }, (err) => {
     if (err)
