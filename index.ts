@@ -42,7 +42,7 @@ server.app.use( '/posts', postRoutes )
 //Login
 
 //conectar BD
-mongoose.connect('mongodb+srv://SweptAaron:CyD160412@cluster0-ok4he.mongodb.net/fotosgram?retryWrites=true&w=majority',
+mongoose.connect('URL De mongo Altas',
         {   useNewUrlParser: true,
             useCreateIndex: true,
         }, ( err ) =>{
